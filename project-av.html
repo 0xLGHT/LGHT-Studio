@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Abstraverse</title>
+    <link rel="stylesheet" href="project-av-style.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap">
+</head>
+<body>
+    <header>
+        <h1>ABSTRAVERSE</h1>
+    </header>
+
+    <div class="nft-container" id="nft-container"></div>
+
+    <script>
+        const nfts = [
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '8'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '59'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '6'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '96'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '41'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '31'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '61'},
+            {contractAddress: '0x257c0dC5faCb9B7287Ac7a4366D1b095e3481933', tokenId: '3'},
+            // Add more NFTs here
+        ];
+
+        nfts.forEach(({contractAddress, tokenId}) => {
+            fetch(`https://api.opensea.io/api/v1/asset/${contractAddress}/${tokenId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const nftItem = document.createElement('div');
+                    nftItem.className = 'nft-item';
+
+                    const mediaUrl = data.animation_url || data.image_url;
+
+                    if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.mov')) {
+                        const video = document.createElement('video');
+                        video.src = mediaUrl;
+                        video.style.width = '100%';
+                        video.controls = true;
+                        video.loop = true;
+                        video.autoplay = true;
+                        video.muted = true;
+                        nftItem.appendChild(video);
+                    } else {
+                        const image = document.createElement('img');
+                        image.src = mediaUrl;
+                        image.style.width = '100%';
+                        nftItem.appendChild(image);
+                    }
+
+                    const name = document.createElement('h3');
+                    name.innerText = data.name;
+                    nftItem.appendChild(name);
+
+                    const description = document.createElement('p');
+                    description.innerText = data.description;
+                    nftItem.appendChild(description);
+
+                    document.getElementById('nft-container').appendChild(nftItem);
+                });
+        });
+    </script>
+
+    <div class="container">
+
+        <h2>An Onchain Odyssey</h2>
+        <p>Embark on an unprecedented artistic journey, as Abstraverse weaves together a dazzling tapestry of 1000 unique, digital one-of-one masterpieces. This groundbreaking collection, meticulously crafted over 5-7 years, fuses abstract, impressionist, in-formalist, generative code, surrealist, contemporary, and fine art styles to create a harmonious symphony of visual wonder. </p>
+        <p>Breathing new life into the creative landscape, Abstraverse is a vivid testament to the power of art as a catalyst for cultural transformation. By embracing the Ethereum blockchain, this series exemplifies the cutting-edge union of technology and creativity, pushing the boundaries of what it means to be a collector in the digital age.</p>
+        <p>With over 12% of the supply already sold and $80,000 in sales, Abstraverse is capturing the hearts and minds of art enthusiasts worldwide. Join this thriving community of collectors and witness the next renaissance firsthand.</p>
+    </div>
+</body>
+</html>

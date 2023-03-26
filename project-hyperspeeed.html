@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPERSPEEED Album</title>
+    <link rel="stylesheet" href="project-hyperspeeed-style.css">
+</head>
+<body>
+  <header>
+      <h1>HYPERSPEEED</h1>
+  </header>
+
+  <div class="nft-container" id="nft-container"></div>
+
+  <script>
+      const nfts = [
+          {contractAddress: '0xA1c6f7c4cDdECaeD2F62164a36E1b32b9E5e5984', tokenId: '29'},
+          {contractAddress: '0xA1c6f7c4cDdECaeD2F62164a36E1b32b9E5e5984', tokenId: '18'},
+          {contractAddress: '0xA1c6f7c4cDdECaeD2F62164a36E1b32b9E5e5984', tokenId: '16'},
+          {contractAddress: '0xA1c6f7c4cDdECaeD2F62164a36E1b32b9E5e5984', tokenId: '34'},
+          {contractAddress: '0xA1c6f7c4cDdECaeD2F62164a36E1b32b9E5e5984', tokenId: '23'},
+          {contractAddress: '0xA1c6f7c4cDdECaeD2F62164a36E1b32b9E5e5984', tokenId: '19'},
+          // Add more NFTs here
+      ];
+
+      nfts.forEach(({contractAddress, tokenId}) => {
+          fetch(`https://api.opensea.io/api/v1/asset/${contractAddress}/${tokenId}/`)
+              .then(response => response.json())
+              .then(data => {
+                  const nftItem = document.createElement('div');
+                  nftItem.className = 'nft-item';
+
+                  const mediaUrl = data.animation_url || data.image_url;
+
+                  if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.mov')) {
+                      const video = document.createElement('video');
+                      video.src = mediaUrl;
+                      video.style.width = '100%';
+                      video.controls = true;
+                      video.loop = true;
+                      video.autoplay = true;
+                      video.muted = true;
+                      nftItem.appendChild(video);
+                  } else {
+                      const image = document.createElement('img');
+                      image.src = mediaUrl;
+                      image.style.width = '100%';
+                      nftItem.appendChild(image);
+                  }
+
+                  const name = document.createElement('h3');
+                  name.innerText = data.name;
+                  nftItem.appendChild(name);
+
+                  const description = document.createElement('p');
+                  description.innerText = data.description;
+                  nftItem.appendChild(description);
+
+                  document.getElementById('nft-container').appendChild(nftItem);
+              });
+      });
+  </script>
+
+  <div class="container">
+
+      <h2>Onchain Alchemy</h2>
+      <p>HYPERSPEEED is a groundbreaking visual art album that masterfully weaves together the universal themes of beauty, pain, death, and divine insight. Conceived as a cathartic exploration of the artist's past trauma, this collection of 30 one-of-a-kind digital masterpieces transcends personal experience to offer a transformative narrative that resonates with the human spirit.</p>
+      <p>Each piece in HYPERSPEEED is a poignant testament to the resilience and growth that arise from life's most challenging moments. With a harmonious palette and mesmerizing effects, the collection evokes a profound emotional response that speaks to the core of our shared humanity. Bold, captivating, and infused with wisdom, these artworks embody the raw power of vulnerability and the strength that emerges from embracing change.</p>
+      <p>HYPERSPEEED invites collectors to discover the dynamic interplay between struggle and enlightenment, as encapsulated in the evocative slogan: "Trying to live life at hyperspeeed." As the journey unfolds, the true meaning of hyperspeeed reveals itself, offering a sense of progressive closure and a newfound understanding of life's complexities.</p>
+      <p>Don't miss this opportunity to own a piece of this unparalleled visual art album, a timeless testament to the transformative power of art in transcending pain and adversity.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+body {
+  background-color: #fafafa;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+}
+
+header {
+  padding: 1rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1; 
+}
+
+.icon-link {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.icon-link img {
+  height: 50px;
+  width: 50px;
+}
+
+main {
+  padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+li {
+  padding: 6px;
+  letter-spacing: -0.075em;
+}
+
+
+a {
+  text-decoration: none;
+  color: #fafafa;
+  font-size: 10vw;
+  white-space: nowrap;
+  display: block;
+}
+
+a:hover {
+  color: #55ff1a;
+  transition: color 500ms ease-out;
+}
+
+/* Add a media query to adjust the font size and layout for larger screens */
+@media (min-width: 768px) {
+  a {
+    font-size: 3rem;
+  }
+  
+  li:nth-child(even) {
+    margin-left: 50px;
+  }
+}
+
+/* Add the existing styles here */
+
+.widget-container {
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 7.5px;
+  color: #fafafa;
+}
+
+.widget {
+  display: none;
+  position: absolute;
+}
+
