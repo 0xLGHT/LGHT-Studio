@@ -1,0 +1,46 @@
+body {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #fafafa;
+}
+
+#sketch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1093px;
+  height: 729px;
+  border: 12px solid black;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: -2px;
+}
+
+p {
+  max-width: 1093px;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-align: justify;
+  letter-spacing: -.5px;
+}
+
+
+.refresh {
+  margin-top: -15px;
+  font-size: .75rem;
+}
